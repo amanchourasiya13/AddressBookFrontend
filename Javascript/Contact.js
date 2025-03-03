@@ -1,13 +1,13 @@
 class Contact {
     constructor(firstName, lastName, address, city, state, zip, phone, email) {
-        if (!this.isValidName(firstName)) throw new Error("Invalid First Name");
-        if (!this.isValidName(lastName)) throw new Error("Invalid Last Name");
-        if (!this.isValidAddress(address)) throw new Error("Invalid Address");
-        if (!this.isValidAddress(city)) throw new Error("Invalid City");
-        if (!this.isValidAddress(state)) throw new Error("Invalid State");
-        if (!this.isValidZip(zip)) throw new Error("Invalid Zip Code");
-        if (!this.isValidPhone(phone)) throw new Error("Invalid Phone Number");
-        if (!this.isValidEmail(email)) throw new Error("Invalid Email");
+        if (!this.isValidName(firstName)) throw new Error(`Invalid First Name: ${firstName}`);
+        if (!this.isValidName(lastName)) throw new Error(`Invalid Last Name: ${lastName}`);
+        if (!this.isValidAddress(address)) throw new Error(`Invalid Address: ${address}`);
+        if (!this.isValidAddress(city)) throw new Error(`Invalid City: ${city}`);
+        if (!this.isValidAddress(state)) throw new Error(`Invalid State: ${state}`);
+        if (!this.isValidZip(zip)) throw new Error(`Invalid Zip Code: ${zip}`);
+        if (!this.isValidPhone(phone)) throw new Error(`Invalid Phone Number: ${phone}`);
+        if (!this.isValidEmail(email)) throw new Error(`Invalid Email: ${email}`);
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,15 +44,4 @@ class Contact {
     }
 }
 
-try {
-    let contact1 = new Contact("John", "Doe", "123 Street", "NewYork", "NewY", "123456", "9876543210", "john.doe@example.com");
-    console.log(contact1.toString());
-} catch (error) {
-    console.error(error.message);
-}
-
-try {
-    let contact2 = new Contact("jo", "smith", "abc", "la", "C", "1234", "98765", "invalid.email");
-} catch (error) {
-    console.error(error.message);
-}
+module.exports = Contact;
