@@ -23,11 +23,11 @@ try {
 
 // myAddressBook.displayContacts();   //this will display every contact in addressBook
 
-console.log("\nContacts in New York:");
-console.log(myAddressBook.searchByCity("NewYork"));
+// console.log("\nContacts in New York:");
+// console.log(myAddressBook.searchByCity("NewYork"));
 
-console.log("\nContacts in California:");
-console.log(myAddressBook.searchByState("California"));
+// console.log("\nContacts in California:");
+// console.log(myAddressBook.searchByState("California"));
 
 
 console.log("\nPersons grouped by City:");
@@ -35,5 +35,12 @@ console.log(myAddressBook.viewPersonsByCity());
 
 console.log("\nPersons grouped by State:");
 console.log(myAddressBook.viewPersonsByState());
+
+
+console.log("\nNumber of Contacts by City:");
+console.log(myAddressBook.getCountByCity());
+
+console.log("\nNumber of Contacts by State:");
+console.log(myAddressBook.getCountByState());
 
 console.log(`Number of contacts: ${myAddressBook.getContactCount()}`);

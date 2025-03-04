@@ -92,6 +92,21 @@ class AddressBook {
         }, {});
     }
 
+    getCountByCity() {
+        return this.contacts.reduce((acc, contact) => {
+            acc[contact.city] = (acc[contact.city] || 0) + 1;
+            return acc;
+        }, {});
+    }
+    
+    getCountByState() {
+        return this.contacts.reduce((acc, contact) => {
+            acc[contact.state] = (acc[contact.state] || 0) + 1;
+            return acc;
+        }, {});
+    }
+    
+
     displayContacts() {
         if (this.contacts.length === 0) {
             console.log("Address Book is empty.");
