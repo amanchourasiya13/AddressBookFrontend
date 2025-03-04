@@ -121,6 +121,29 @@ class AddressBook {
         console.log("\nContacts sorted by name:");
         this.displayContacts();
     }
+
+    sortContactsBy(field) {
+        if (this.contacts.length === 0) {
+            console.log("Address Book is empty. No contacts to sort.");
+            return;
+        }
+
+        const validFields = ["city", "state", "zip"];
+        if (!validFields.includes(field)) {
+            console.log(`Invalid sorting field. Choose from: ${validFields.join(", ")}`);
+            return;
+        }
+
+        this.contacts.sort((a, b) => {
+            const valueA = a[field].toString().toLowerCase();
+            const valueB = b[field].toString().toLowerCase();
+            return valueA.localeCompare(valueB);
+        });
+
+        console.log(`\nContacts sorted by ${field.charAt(0).toUpperCase() + field.slice(1)}:`);
+        this.displayContacts();
+    }
+    
     displayContacts() {
         if (this.contacts.length === 0) {
             console.log("Address Book is empty.");
