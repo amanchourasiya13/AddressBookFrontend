@@ -11,8 +11,14 @@ class AddressBook {
             return;
         }
 
-        if (this.contacts.some(c => c.email === contact.email || c.phone === contact.phone)) {
-            console.log("Contact with this email or phone number already exists.");
+        // Check for duplicate person by name (First Name + Last Name)
+        const isDuplicate = this.contacts
+            .filter(c => c.firstName.toLowerCase() === contact.firstName.toLowerCase() &&
+                         c.lastName.toLowerCase() === contact.lastName.toLowerCase())
+            .reduce(count => count + 1, 0) > 0;
+
+        if (isDuplicate) {
+            console.log(`Duplicate entry: Contact ${contact.firstName} ${contact.lastName} already exists.`);
             return;
         }
 

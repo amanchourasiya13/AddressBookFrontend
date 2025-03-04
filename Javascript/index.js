@@ -1,5 +1,5 @@
-const Contact = require('./Contact.js');
-const AddressBook = require('./AddressBook.js');
+const AddressBook = require('./AddressBook');
+const Contact = require('./Contact');
 
 let myAddressBook = new AddressBook();
 
@@ -9,19 +9,14 @@ try {
 
     let contact2 = new Contact("Jane", "Smith", "456 Avenue", "LosAngeles", "California", "789012", "8765432109", "jane.smith@example.com");
     myAddressBook.addContact(contact2);
+
+    // Attempt to add a duplicate entry
+    let duplicateContact = new Contact("John", "Doe", "789 Boulevard", "San Francisco", "California", "654321", "9123456789", "john.duplicate@example.com");
+    myAddressBook.addContact(duplicateContact); // Should print "Duplicate entry"
+
 } catch (error) {
     console.error(error.message);
 }
 
-console.log("Before update:");
 myAddressBook.displayContacts();
-
-myAddressBook.editContact("John", "Doe", { address: "789 Boulevard", city: "San Francisco" });
-
-console.log("After update:");
-myAddressBook.displayContacts();
-
-myAddressBook.deleteContact("John", "Doe");
-myAddressBook.displayContacts();
-
 console.log(`Number of contacts: ${myAddressBook.getContactCount()}`);
