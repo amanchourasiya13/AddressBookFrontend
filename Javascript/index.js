@@ -20,3 +20,6 @@ myAddressBook.editContact("John", "Doe", { address: "789 Boulevard", city: "San 
 
 console.log("After update:");
 myAddressBook.displayContacts();
+
+myAddressBook.deleteContact("John", "Doe");
+myAddressBook.displayContacts();
