@@ -11,7 +11,7 @@ class AddressBook {
             return;
         }
 
-        // Check for duplicate person by name (First Name + Last Name)
+        // Check for duplicate person by name
         const isDuplicate = this.contacts
             .filter(c => c.firstName.toLowerCase() === contact.firstName.toLowerCase() &&
                          c.lastName.toLowerCase() === contact.lastName.toLowerCase())
@@ -39,12 +39,7 @@ class AddressBook {
 
         Object.keys(updatedDetails).forEach(key => {
             if (contact.hasOwnProperty(key) && updatedDetails[key] !== undefined) {
-                const validatorMethod = `isValid${key.charAt(0).toUpperCase() + key.slice(1)}`;
-                if (typeof contact[validatorMethod] === "function" && !contact[validatorMethod](updatedDetails[key])) {
-                    console.log(`Invalid value for ${key}: ${updatedDetails[key]}`);
-                } else {
-                    contact[key] = updatedDetails[key];
-                }
+                contact[key] = updatedDetails[key];
             }
         });
 
@@ -67,6 +62,18 @@ class AddressBook {
 
     getContactCount() {
         return this.contacts.reduce((count) => count + 1, 0);
+    }
+
+    searchByCity(city) {
+        return this.contacts
+            .filter(contact => contact.city.toLowerCase() === city.toLowerCase())
+            .map(contact => contact.toString());
+    }
+
+    searchByState(state) {
+        return this.contacts
+            .filter(contact => contact.state.toLowerCase() === state.toLowerCase())
+            .map(contact => contact.toString());
     }
 
     displayContacts() {
