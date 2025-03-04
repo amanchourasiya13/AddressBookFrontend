@@ -11,9 +11,9 @@ class AddressBook {
             return;
         }
 
-        // Check for duplicate email or phone
         if (this.contacts.some(c => c.email === contact.email || c.phone === contact.phone)) {
-            throw new Error(`Contact with email ${contact.email} or phone ${contact.phone} already exists.`);
+            console.log("Contact with this email or phone number already exists.");
+            return;
         }
 
         this.contacts.push(contact);
@@ -21,41 +21,46 @@ class AddressBook {
     }
 
     editContact(firstName, lastName, updatedDetails) {
-        let contact = this.findContactByName(firstName, lastName);
-    
+        let contact = this.contacts.find(c => 
+            c.firstName.toLowerCase() === firstName.toLowerCase() &&
+            c.lastName.toLowerCase() === lastName.toLowerCase()
+        );
+
         if (!contact) {
-            console.log(`Contact ${firstName} ${lastName} not found.`);
+            console.log("Contact not found.");
             return;
         }
-    
+
         Object.keys(updatedDetails).forEach(key => {
             if (contact.hasOwnProperty(key) && updatedDetails[key] !== undefined) {
-                contact[key] = updatedDetails[key];
+                const validatorMethod = `isValid${key.charAt(0).toUpperCase() + key.slice(1)}`;
+                if (typeof contact[validatorMethod] === "function" && !contact[validatorMethod](updatedDetails[key])) {
+                    console.log(`Invalid value for ${key}: ${updatedDetails[key]}`);
+                } else {
+                    contact[key] = updatedDetails[key];
+                }
             }
         });
-    
-        console.log(`Contact ${firstName} ${lastName} updated successfully.`);
-    }
-    
-    findContactByName(firstName, lastName) {
-        return this.contacts.find(contact => 
-            contact.firstName.toLowerCase() === firstName.toLowerCase() &&
-            contact.lastName.toLowerCase() === lastName.toLowerCase()
-        );
+
+        console.log("Contact updated successfully.");
     }
 
     deleteContact(firstName, lastName) {
-        const index = this.contacts.findIndex(contact => 
-            contact.firstName.toLowerCase() === firstName.toLowerCase() &&
-            contact.lastName.toLowerCase() === lastName.toLowerCase()
+        const initialLength = this.contacts.length;
+        this.contacts = this.contacts.filter(c => 
+            !(c.firstName.toLowerCase() === firstName.toLowerCase() && 
+              c.lastName.toLowerCase() === lastName.toLowerCase())
         );
 
-        if (index !== -1) {
-            this.contacts.splice(index, 1);
-            console.log(`Contact ${firstName} ${lastName} deleted successfully.`);
+        if (this.contacts.length < initialLength) {
+            console.log("Contact deleted successfully.");
         } else {
-            console.log(`Contact ${firstName} ${lastName} not found.`);
+            console.log("Contact not found.");
         }
+    }
+
+    getContactCount() {
+        return this.contacts.reduce((count) => count + 1, 0);
     }
 
     displayContacts() {

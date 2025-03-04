@@ -23,3 +23,5 @@ myAddressBook.displayContacts();
 
 myAddressBook.deleteContact("John", "Doe");
 myAddressBook.displayContacts();
+
+console.log(`Number of contacts: ${myAddressBook.getContactCount()}`);
