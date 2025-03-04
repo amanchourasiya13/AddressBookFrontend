@@ -13,4 +13,10 @@ try {
     console.error(error.message);
 }
 
+console.log("Before update:");
+myAddressBook.displayContacts();
+
+myAddressBook.editContact("John", "Doe", { address: "789 Boulevard", city: "San Francisco" });
+
+console.log("After update:");
 myAddressBook.displayContacts();
