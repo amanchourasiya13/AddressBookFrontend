@@ -106,7 +106,21 @@ class AddressBook {
         }, {});
     }
     
+    sortContactsByName() {
+        if (this.contacts.length === 0) {
+            console.log("Address Book is empty. No contacts to sort.");
+            return;
+        }
 
+        this.contacts.sort((a, b) => {
+            const nameA = (a.firstName + " " + a.lastName).toLowerCase();
+            const nameB = (b.firstName + " " + b.lastName).toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
+
+        console.log("\nContacts sorted by name:");
+        this.displayContacts();
+    }
     displayContacts() {
         if (this.contacts.length === 0) {
             console.log("Address Book is empty.");

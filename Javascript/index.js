@@ -9,10 +9,10 @@ try {
 
     let contact2 = new Contact("Jane", "Smith", "456 Avenue", "LosAngeles", "California", "789012", "8765432109", "jane.smith@example.com");
     myAddressBook.addContact(contact2);
-
-    // Attempt to add a duplicate entry
-    let duplicateContact = new Contact("John", "Doe", "789 Boulevard", "San Francisco", "California", "654321", "9123456789", "john.duplicate@example.com");
-    myAddressBook.addContact(duplicateContact); // Should print "Duplicate entry"
+ 
+                 // Attempt to add a duplicate entry
+    // let duplicateContact = new Contact("John", "Doe", "789 Boulevard", "San Francisco", "California", "654321", "9123456789", "john.duplicate@example.com");
+    // myAddressBook.addContact(duplicateContact); // Should print "Duplicate entry"
 
     let contact3 = new Contact("Alice", "Brown", "789 Road", "NewYork", "NewYork", "654321", "9123456789", "alice.brown@example.com");
     myAddressBook.addContact(contact3);
@@ -30,17 +30,19 @@ try {
 // console.log(myAddressBook.searchByState("California"));
 
 
-console.log("\nPersons grouped by City:");
-console.log(myAddressBook.viewPersonsByCity());
+// console.log("\nPersons grouped by City:");
+// console.log(myAddressBook.viewPersonsByCity());
 
-console.log("\nPersons grouped by State:");
-console.log(myAddressBook.viewPersonsByState());
+// console.log("\nPersons grouped by State:");
+// console.log(myAddressBook.viewPersonsByState());
 
 
-console.log("\nNumber of Contacts by City:");
-console.log(myAddressBook.getCountByCity());
+// console.log("\nNumber of Contacts by City:");
+// console.log(myAddressBook.getCountByCity());
 
-console.log("\nNumber of Contacts by State:");
-console.log(myAddressBook.getCountByState());
+// console.log("\nNumber of Contacts by State:");
+// console.log(myAddressBook.getCountByState());
 
 console.log(`Number of contacts: ${myAddressBook.getContactCount()}`);
+
+myAddressBook.sortContactsByName();
