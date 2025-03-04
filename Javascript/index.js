@@ -16,11 +16,12 @@ try {
 
     let contact3 = new Contact("Alice", "Brown", "789 Road", "NewYork", "NewYork", "654321", "9123456789", "alice.brown@example.com");
     myAddressBook.addContact(contact3);
+
 } catch (error) {
     console.error(error.message);
 }
 
-myAddressBook.displayContacts();
+// myAddressBook.displayContacts();   //this will display every contact in addressBook
 
 console.log("\nContacts in New York:");
 console.log(myAddressBook.searchByCity("NewYork"));
@@ -28,5 +29,11 @@ console.log(myAddressBook.searchByCity("NewYork"));
 console.log("\nContacts in California:");
 console.log(myAddressBook.searchByState("California"));
 
+
+console.log("\nPersons grouped by City:");
+console.log(myAddressBook.viewPersonsByCity());
+
+console.log("\nPersons grouped by State:");
+console.log(myAddressBook.viewPersonsByState());
 
 console.log(`Number of contacts: ${myAddressBook.getContactCount()}`);

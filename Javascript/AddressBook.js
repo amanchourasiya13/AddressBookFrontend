@@ -76,6 +76,22 @@ class AddressBook {
             .map(contact => contact.toString());
     }
 
+    viewPersonsByCity() {
+        return this.contacts.reduce((acc, contact) => {
+            acc[contact.city] = acc[contact.city] || [];
+            acc[contact.city].push(contact.toString());
+            return acc;
+        }, {});
+    }
+
+    viewPersonsByState() {
+        return this.contacts.reduce((acc, contact) => {
+            acc[contact.state] = acc[contact.state] || [];
+            acc[contact.state].push(contact.toString());
+            return acc;
+        }, {});
+    }
+
     displayContacts() {
         if (this.contacts.length === 0) {
             console.log("Address Book is empty.");
